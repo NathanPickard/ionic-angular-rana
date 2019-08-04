@@ -8,38 +8,10 @@
 
 <ion-content>
 
-  <ion-card>
-    <ion-img src="https://pbs.twimg.com/profile_images/1114696996160323584/PO2YCu5f_200x200.png"></ion-img>
+  <ion-card button *ngFor="let activity of (activityList | async)">
+    <ion-img [src]="activity.cropped"></ion-img>
     <ion-card-header>
-      <ion-card-title>Nathan's Activity</ion-card-title>
-    </ion-card-header>
-  </ion-card>
-
-  <ion-card>
-    <ion-img src="https://pbs.twimg.com/profile_images/1114696996160323584/PO2YCu5f_200x200.png"></ion-img>
-    <ion-card-header>
-      <ion-card-title>Nathan's Activity</ion-card-title>
-    </ion-card-header>
-  </ion-card>
-
-  <ion-card>
-    <ion-img src="https://pbs.twimg.com/profile_images/1114696996160323584/PO2YCu5f_200x200.png"></ion-img>
-    <ion-card-header>
-      <ion-card-title>Nathan's Activity</ion-card-title>
-    </ion-card-header>
-  </ion-card>
-
-  <ion-card>
-    <ion-img src="https://pbs.twimg.com/profile_images/1114696996160323584/PO2YCu5f_200x200.png"></ion-img>
-    <ion-card-header>
-      <ion-card-title>Nathan's Activity</ion-card-title>
-    </ion-card-header>
-  </ion-card>
-
-  <ion-card>
-    <ion-img src="https://pbs.twimg.com/profile_images/1114696996160323584/PO2YCu5f_200x200.png"></ion-img>
-    <ion-card-header>
-      <ion-card-title>Nathan's Activity</ion-card-title>
+      <ion-card-title>{{ activity.name }}</ion-card-title>
     </ion-card-header>
   </ion-card>
 
