@@ -13,7 +13,8 @@ import { ActivityService } from '../activity.service';
 export class ActivityDetailPage implements OnInit {
   activityDetail: Observable<Activity>;
 
-  constructor(activityService: ActivityService,
+  constructor(
+    activityService: ActivityService,
     activatedRoute: ActivatedRoute) {
     const activityID = activatedRoute.snapshot.params['activityID'];
     this.activityDetail = activityService.getActivity(activityID);
