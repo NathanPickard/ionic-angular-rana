@@ -8,5 +8,16 @@
 </ion-header>
 
 <ion-content>
+  <ion-img [src]="(activityDetail | async).image"></ion-img>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        {{ (activityDetail | async).name }}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{ (activityDetail | async).description }}
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
