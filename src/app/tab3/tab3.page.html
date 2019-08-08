@@ -1,9 +1,24 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Three
+      Profile
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-avatar (click)="selectImageSource()" class="profile-pic">
+    <ion-img src="https://pbs.twimg.com/profile_images/1114696996160323584/PO2YCu5f_200x200.png"></ion-img>
+  </ion-avatar>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Nathan Pickard</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      The author of the greatest app
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>
