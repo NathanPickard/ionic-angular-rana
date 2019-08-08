@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ActivityDetailPage } from './activity-detail.page';
+import { ActivityVideoPageModule } from '../activity-video/activity-video.module';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    ActivityVideoPageModule,
     CommonModule,
     FormsModule,
     IonicModule,
@@ -23,4 +25,4 @@ const routes: Routes = [
   ],
   declarations: [ActivityDetailPage]
 })
-export class ActivityDetailPageModule {}
+export class ActivityDetailPageModule { }
