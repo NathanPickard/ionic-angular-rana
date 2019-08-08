@@ -32,9 +32,12 @@ export class ActivityDetailPage implements OnInit {
       component: ActivityVideoPage
     });
 
-    return await videoModal.present();
-
-
+    return await this.activityDetail.subscribe((activity) => {
+      videoModal.componentProps = {
+        videoURL: activity.video_url
+      };
+      return videoModal.present();
+    });
   }
 
 }
