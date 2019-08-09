@@ -44,9 +44,20 @@
   </ion-card>
 
   <ion-fab vertical="top" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="openModal()">
-      <ion-icon name="play"></ion-icon>
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
     </ion-fab-button>
+
+    <ion-fab-list side="bottom">
+      <ion-fab-button (click)="openModal()">
+        <ion-icon color="success" name="play"></ion-icon>
+      </ion-fab-button>
+
+      <ion-fab-button (click)="share()">
+        <ion-icon color="dark" name="share"></ion-icon>
+      </ion-fab-button>
+
+    </ion-fab-list>
   </ion-fab>
 
 </ion-content>
