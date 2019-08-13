@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 
 import { AlertController } from '@ionic/angular';
 import { CameraOptions, Camera } from '@ionic-native/camera/ngx';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tab3',
@@ -10,9 +13,18 @@ import { CameraOptions, Camera } from '@ionic-native/camera/ngx';
 })
 export class Tab3Page {
   myProfileImage;
+  myStoredProfileImage: Observable<any>;
 
-  constructor(private _alertControllers: AlertController,
-    private _camera: Camera) { }
+  constructor(
+    private _angularFireStore: AngularFirestore,
+    private _angularFireAuth: AngularFireAuth,
+    private _alertControllers: AlertController,
+    private _camera: Camera) {
+    this.myStoredProfileImage = _angularFireStore
+      .collection('users')
+      .doc(this._angularFireAuth.auth.currentUser.uid)
+      .valueChanges();
+  }
 
   async selectImageSource() {
     const cameraOptions: CameraOptions = {
@@ -43,7 +55,14 @@ export class Tab3Page {
           handler: () => {
             this._camera.getPicture(cameraOptions)
               .then((imageData) => {
-                this.myProfileImage = 'data:image/jpeg;base64,' + imageData;
+                // this.myProfileImage = 'data:image/jpeg;base64,' + imageData;
+                const image = 'data:image/jpeg;base64,' + imageData;
+                this._angularFireStore
+                  .collection('users')
+                  .doc(this._angularFireAuth.auth.currentUser.uid)
+                  .set({
+                    image_src: image
+                  });
               });
           }
         },
@@ -52,7 +71,14 @@ export class Tab3Page {
           handler: () => {
             this._camera.getPicture(galleryOptions)
               .then((imageData) => {
-                this.myProfileImage = 'data:image/jpeg;base64,' + imageData;
+                // this.myProfileImage = 'data:image/jpeg;base64,' + imageData;
+                const image = 'data:image/jpeg;base64,' + imageData;
+                this._angularFireStore
+                  .collection('users')
+                  .doc(this._angularFireAuth.auth.currentUser.uid)
+                  .set({
+                    image_src: image
+                  });
               });
           }
         }
