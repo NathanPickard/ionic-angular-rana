@@ -8,7 +8,7 @@ import { Activity } from '../types';
 import { ActivityService } from '../activity.service';
 import { ActivityVideoPage } from '../activity-video/activity-video.page';
 
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 
@@ -21,6 +21,7 @@ export class ActivityDetailPage implements OnInit {
   activityDetail: Observable<Activity>;
 
   constructor(
+    private _toastController: ToastController,
     private _angularFireStore: AngularFirestore,
     private _angularFireAuth: AngularFireAuth,
     private _socialShare: SocialSharing,
@@ -69,7 +70,18 @@ export class ActivityDetailPage implements OnInit {
                 .collection('favorites')
                 .doc(this._angularFireAuth.auth.currentUser.uid)
                 .collection('favorites')
-                .add(activity);
+                .add(activity)
+                .then(() => {
+                  const toast = this._toastController.create({
+                    message: 'The Activity ' +
+                      activity.name + ' was added to your favorites',
+                    duration: 3500,
+                    position: 'top'
+                  });
+                  toast.then((toastMessage) => {
+                    toastMessage.present();
+                  });
+                });
             }
           });
       }
