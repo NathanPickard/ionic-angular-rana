@@ -1,9 +1,18 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      Favorites
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+
+  <ion-card button *ngFor="let activity of (favoriteActivityList | async)">
+    <img [src]="activity.cropped">
+    <ion-card-header>
+      <ion-card-title>{{ activity.name }}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+</ion-content>
